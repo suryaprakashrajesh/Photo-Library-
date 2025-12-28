@@ -3,37 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <title>Genshin Impact Photo Library</title>
+<link rel="icon" type="image/png" href="images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <header>
   <h1>Genshin Impact Photo Library</h1>
-  <p>Unofficial fan-made gallery</p>
+  <p>Anos 97 gallery</p>
 </header>
 
 <nav>
-  <button>Characters</button>
-  <button>Regions</button>
-  <button>Wallpapers</button>
+  <button data-category="all">All</button>
+  <button data-category="characters">Characters</button>
+  <button data-category="regions">Regions</button>
+  <button data-category="wallpapers">Wallpapers</button>
 </nav>
 
+<div class="search">
+  <input type="text" id="searchInput" placeholder="Search images..." />
+</div>
+
 <section class="upload">
+  <select id="categorySelect">
+    <option value="characters">Characters</option>
+    <option value="regions">Regions</option>
+    <option value="wallpapers">Wallpapers</option>
+  </select>
+
   <input type="file" id="uploadInput" accept="image/*" hidden />
-  <button onclick="document.getElementById('uploadInput').click()">
-    Upload Image
-  </button>
+  <button onclick="uploadInput.click()">Upload Image</button>
+
+  <p class="note">Images are stored locally in your browser</p>
 </section>
 
-<main class="gallery">
-  <img src="images/img1.jpg" alt="Genshin Image">
-  <img src="images/img2.jpg" alt="Genshin Image">
-  <img src="images/img3.jpg" alt="Genshin Image">
-</main>
+<main class="gallery" id="gallery"></main>
 
 <footer>
-  <p>© HoYoverse. Fan-made, non-commercial.</p>
+  <p>© HoYoverse. Unofficial, non-commercial fan-made website.</p>
 </footer>
 
+<!-- Modal -->
+<div id="modal" class="modal">
+  <span class="close">&times;</span>
+  <img id="modalImg" class="modal-content" />
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
