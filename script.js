@@ -1,79 +1,38 @@
-const STORAGE_KEY = "genshinUploads";
+/* =========================
+   HERO SLIDER
+========================= */
+const slides = document.querySelectorAll(".slide");
+let current = 0;
 
-const uploadInput = document.getElementById("uploadInput");
-const gallery = document.getElementById("gallery");
-const searchInput = document.getElementById("searchInput");
-const categorySelect = document.getElementById("categorySelect");
+setInterval(() => {
+  slides[current].classList.remove("active");
+  current = (current + 1) % slides.length;
+  slides[current].classList.add("active");
+}, 5000);
 
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
-const closeBtn = document.querySelector(".close");
+/* =========================
+   KEYWORD SHORTLIST / FILTER
+========================= */
+const filterButtons = document.querySelectorAll(".filter-bar button");
+const cards = document.querySelectorAll(".img-card");
 
-// Add image
-function addImage(src, category) {
-  const img = document.createElement("img");
-  img.src = src;
-  img.dataset.category = category;
-  img.alt = "genshin image";
-  gallery.prepend(img);
-}
-
-// Load saved images
-function loadImages() {
-  const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-  data.forEach(item => addImage(item.src, item.category));
-}
-
-// Upload handler
-uploadInput.addEventListener("change", () => {
-  const file = uploadInput.files[0];
-  if (!file || !file.type.startsWith("image/")) return;
-
-  const reader = new FileReader();
-  reader.onload = e => {
-    const src = e.target.result;
-    const category = categorySelect.value;
-
-    addImage(src, category);
-
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    data.push({ src, category });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  };
-  reader.readAsDataURL(file);
-});
-
-// Search
-searchInput.addEventListener("input", () => {
-  const q = searchInput.value.toLowerCase();
-  gallery.querySelectorAll("img").forEach(img => {
-    img.style.display = img.alt.includes(q) ? "block" : "none";
-  });
-});
-
-// Category filter
-document.querySelectorAll("nav button").forEach(btn => {
+filterButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    const cat = btn.dataset.category;
-    gallery.querySelectorAll("img").forEach(img => {
-      img.style.display =
-        cat === "all" || img.dataset.category === cat
-          ? "block"
-          : "none";
+    const key = btn.dataset.key;
+
+    // Active state
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    // Filter images
+    cards.forEach(card => {
+      const keywords = card.dataset.keywords;
+
+      if (key === "all" || keywords.includes(key)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
     });
   });
 });
-
-// Modal preview
-document.addEventListener("click", e => {
-  if (e.target.tagName === "IMG" && e.target.parentElement === gallery) {
-    modal.style.display = "flex";
-    modalImg.src = e.target.src;
-  }
-});
-
-closeBtn.onclick = () => modal.style.display = "none";
-modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
-
-// Init
-loadImages();
