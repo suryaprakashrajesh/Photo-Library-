@@ -1,55 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Genshin Impact Photo Library</title>
-<link rel="icon" type="image/png" href="favicon-32x32.png">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Genshin Impact Photo Library</h1>
-  <p>Anos 97 gallery</p>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">PHOTO LIBRARY</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+  </nav>
 </header>
 
-<nav>
-  <button data-category="all">All</button>
-  <button data-category="characters">Characters</button>
-  <button data-category="regions">Regions</button>
-  <button data-category="wallpapers">Wallpapers</button>
-</nav>
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="slider">
+    <img src="images/img1.jpg" class="slide active">
+    <img src="images/hero2.jpg" class="slide">
+    <img src="images/hero3.jpg" class="slide">
+  </div>
 
-<div class="search">
-  <input type="text" id="searchInput" placeholder="Search images..." />
-</div>
+  <div class="overlay"></div>
 
-<section class="upload">
-  <select id="categorySelect">
-    <option value="characters">Characters</option>
-    <option value="regions">Regions</option>
-    <option value="wallpapers">Wallpapers</option>
-  </select>
-
-  <input type="file" id="uploadInput" accept="image/*" hidden />
-  <button onclick="uploadInput.click()">Upload Image</button>
-
-  <p class="note">Images are stored locally in your browser</p>
+  <div class="hero-content">
+    <p class="tagline">GENSHIN IMPACT FAN GALLERY</p>
+    <h1>
+      Designed for fans.<br>
+      Built to showcase beauty.
+    </h1>
+    <p class="subtitle">
+      A curated collection of Genshin Impact images and wallpapers.
+    </p>
+    <a href="#gallery" class="cta">Explore Gallery</a>
+  </div>
 </section>
 
-<main class="gallery" id="gallery"></main>
+<!-- GALLERY SECTION -->
+<section id="gallery" class="gallery-section">
+  <h2>Gallery</h2>
 
-<footer>
-  <p>© HoYoverse. Unofficial, non-commercial fan-made website.</p>
-</footer>
+  <!-- KEYWORD FILTER -->
+  <div class="filter-bar">
+    <button data-key="all" class="active">All</button>
+    <button data-key="furina">Furina</button>
+    <button data-key="yae">Yae Miko</button>
+    <button data-key="Zibai">Zibi</button>
+  </div>
 
-<!-- Modal -->
-<div id="modal" class="modal">
-  <span class="close">&times;</span>
-  <img id="modalImg" class="modal-content" />
-</div>
+  <!-- IMAGE GRID -->
+  <div class="gallery">
+    <div class="img-card" data-keywords="furina">
+      <img src="images/gallery1.jpg">
+    </div>
+
+    <div class="img-card" data-keywords="yae miko electro">
+      <img src="images/gallery2.jpg">
+    </div>
+
+    <div class="img-card" data-keywords="yae Zibi cute">
+      <img src="images/gallery3.jpg">
+    </div>
+
+    <div class="img-card" data-keywords="furina Zibi cute">
+      <img src="images/gallery4.jpg">
+    </div>
+
+    <div class="img-card" data-keywords="furina wallpaper">
+      <img src="images/gallery5.jpg">
+    </div>
+
+    <div class="img-card" data-keywords="yae ">
+      <img src="images/gallery6.jpg">
+    </div>
+  </div>
+</section>
 
 <script src="script.js"></script>
 </body>
 </html>
-
