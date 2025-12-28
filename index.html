@@ -10,78 +10,113 @@
 
 <!-- NAVBAR -->
 <header class="navbar">
-  <div class="logo">PHOTO LIBRARY</div>
+  <div class="logo">Genshin Gallery</div>
   <nav>
-    <a href="#home">Home</a>
+    <a href="#">Home</a>
     <a href="#gallery">Gallery</a>
     <a href="#about">About</a>
   </nav>
 </header>
 
-<!-- HERO SECTION -->
+<!-- HERO -->
 <section class="hero">
-  <div class="slider">
-    <img src="images/img1.jpg" class="slide active">
-    <img src="images/hero2.jpg" class="slide">
-    <img src="images/hero3.jpg" class="slide">
-  </div>
-
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <p class="tagline">GENSHIN IMPACT FAN GALLERY</p>
-    <h1>
-      Designed for fans.<br>
-      Built to showcase beauty.
-    </h1>
-    <p class="subtitle">
-      A curated collection of Genshin Impact images and wallpapers.
-    </p>
-    <a href="#gallery" class="cta">Explore Gallery</a>
+  <div class="hero-box">
+    <h1>Genshin Impact<br>Photo Library</h1>
+    <p>Discover curated characters, wallpapers, and cute moments.</p>
+    <a href="#gallery" class="btn-primary">Browse Gallery</a>
   </div>
 </section>
 
-<!-- GALLERY SECTION -->
+<!-- GALLERY -->
 <section id="gallery" class="gallery-section">
   <h2>Gallery</h2>
 
-  <!-- KEYWORD FILTER -->
+  <!-- FILTER -->
   <div class="filter-bar">
-    <button data-key="all" class="active">All</button>
-    <button data-key="furina">Furina</button>
-    <button data-key="yae">Yae Miko</button>
-    <button data-key="Zibai">Zibai</button>
-  </div>
+  <button data-key="all" class="active">All</button>
+  <button data-key="archon">Archons</button>
+  <button data-key="hydro">Hydro</button>
+  <button data-key="pyro">Pyro</button>
+  <button data-key="electro">Electro</button>
+  <button data-key="cryo">Cryo</button>
+  <button data-key="anemo">Anemo</button>
+  <button data-key="geo">Geo</button>
+  <button data-key="dendro">Dendro</button>
+</div>
 
-  <!-- IMAGE GRID -->
+
+<div class="search-bar">
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search character (e.g. Furina, Raiden Shogun...)"
+    autocomplete="off">
+  <ul id="suggestions"></ul>
+</div>
+
+
+
+  <!-- GRID -->
   <div class="gallery">
     <div class="img-card" data-keywords="furina">
-      <img src="images/gallery1.jpg">
+      <img src="images/img1.jpg" loading="lazy">
+
+      <span class="tag">Furina</span>
     </div>
 
-    <div class="img-card" data-keywords="yae miko electro">
-      <img src="images/gallery2.jpg">
+    <div class="img-card" data-keywords="lauma nefer cloumbina archon">
+     <img src="images/AQ-ss.png" loading="lazy">
+      <span class="tag">Archon Quest</span>
     </div>
 
-    <div class="img-card" data-keywords="yae Zibi cute">
-      <img src="images/gallery3.jpg">
+    <div class="img-card" data-keywords="benny">
+      <img src="images/gallery1.jpg" loading="lazy">
+      <span class="tag">Benny</span>
     </div>
 
-    <div class="img-card" data-keywords="furina Zibi cute">
-      <img src="images/gallery4.jpg">
+    <div class="img-card" data-keywords="furina zibi cute">
+      <img src="images/gallery1.jpg" loading="lazy">
+      <span class="tag">Zibai</span>
     </div>
 
     <div class="img-card" data-keywords="furina wallpaper">
-      <img src="images/gallery5.jpg">
+      <img src="images/gallery1.jpg" loading="lazy">
+      <span class="tag">Wallpaper</span>
     </div>
 
-    <div class="img-card" data-keywords="yae ">
-      <img src="images/gallery6.jpg">
+    <div class="img-card" data-keywords="yae">
+      <img src="images/gallery1.jpg" loading="lazy">
+      <span class="tag">Yae</span>
     </div>
   </div>
 </section>
+<p id="emptyState" class="empty-state">
+  No images found for this search.
+</p>
 
 <script src="script.js"></script>
+
+<!-- IMAGE MODAL -->
+<div class="modal" id="imageModal">
+  <button class="close">&times;</button>
+  <img class="modal-img" id="modalImg">
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p class="footer-text">
+      This webpage is created and maintained by <strong>Anos 97 Team</strong>
+    </p>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/ig_anosvoldigoad/" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/@anos97tamil" target="_blank">YouTube</a>
+      <a href="https://www.twitch.tv/anos97tamil" target="_blank">Twitch</a>
+      <a href="https://discord.com/invite/JBHeaQn" target="_blank">Discord</a>
+      <a href="https://x.com/igAnosVoldigoad" target="_blank">Twitter</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
-
