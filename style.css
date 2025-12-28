@@ -1,62 +1,104 @@
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-  background: #fafafa;
-  color: #222;
+  background: #ffffff;
+  color: #333;
 }
 
 header {
   text-align: center;
   padding: 2rem 1rem;
+  background: #ffc0cb;
 }
 
 nav {
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 1.5rem 0;
 }
 
 nav button {
-  margin: 0 .5rem;
-  padding: .5rem 1rem;
+  margin: 0.3rem;
+  padding: 0.5rem 1.2rem;
   border: none;
-  background: #eee;
-  border-radius: 6px;
+  background: #ffc0cb;
+  border-radius: 20px;
   cursor: pointer;
+}
+
+.search {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.search input {
+  width: 260px;
+  padding: 0.6rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #ffc0cb;
+}
+
+.upload {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.upload select,
+.upload button {
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  border-radius: 20px;
+  border: none;
+  background: #ffc0cb;
+  cursor: pointer;
+}
+
+.note {
+  font-size: 0.8rem;
+  color: #666;
 }
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 }
 
 .gallery img {
   width: 100%;
-  border-radius: 10px;
-  transition: transform .2s ease;
-}
-
-.gallery img:hover {
-  transform: scale(1.03);
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  cursor: pointer;
 }
 
 footer {
   text-align: center;
   font-size: 0.85rem;
   padding: 1rem;
-  color: #666;
 }
 
-.upload {
-  text-align: center;
-  margin-bottom: 1rem;
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.upload button {
-  padding: .6rem 1.2rem;
-  border-radius: 8px;
-  border: none;
-  background: #ddd;
+.modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 32px;
+  color: white;
   cursor: pointer;
 }
