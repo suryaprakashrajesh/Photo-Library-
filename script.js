@@ -13,8 +13,13 @@ const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");
 const modalClose = document.querySelector(".modal-close");
 
-/* FIX: define closeBtn safely (was causing error) */
+/* FIX: define closeBtn safely */
 const closeBtn = modalClose;
+
+/* FORCE HIDE EMPTY STATE ON INITIAL LOAD */
+if (emptyState) {
+  emptyState.style.display = "none";
+}
 
 /* =========================
    IMAGE CLICK → MODAL
@@ -92,8 +97,14 @@ function applyFilters() {
     }
   });
 
-  /* FIX: show empty message ONLY after user interaction */
-  if (userHasInteracted && visibleCount === 0) {
+  /* HARD GUARD: never show empty state on first load */
+  if (!userHasInteracted && query === "" && activeKey === "all") {
+    emptyState.style.display = "none";
+    return;
+  }
+
+  /* Show empty state only when appropriate */
+  if (visibleCount === 0) {
     emptyState.style.display = "block";
   } else {
     emptyState.style.display = "none";
@@ -213,16 +224,8 @@ function showSuggestions() {
 }
 
 /* =========================
-   FULLSCREEN IMAGE MODAL
+   FULLSCREEN IMAGE MODAL (SAFETY)
 ========================= */
-document.querySelectorAll(".img-card img").forEach(img => {
-  img.addEventListener("click", () => {
-    modal.classList.add("active");
-    modalImg.src = img.src;
-    document.body.style.overflow = "hidden";
-  });
-});
-
 closeBtn.addEventListener("click", closeModal);
 
 modal.addEventListener("click", e => {
@@ -242,7 +245,7 @@ window.addEventListener("load", () => {
   if (foxVideo) {
     foxVideo.muted = true;
     foxVideo.play().catch(() => {
-      // autoplay blocked silently (rare)
+      // autoplay blocked silently
     });
   }
 });
