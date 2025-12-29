@@ -1,6 +1,8 @@
 /* =========================
    VARIABLES
 ========================= */
+let userHasInteracted = false;
+
 const cards = document.querySelectorAll(".img-card");
 const buttons = document.querySelectorAll(".filter-bar button");
 const searchInput = document.getElementById("searchInput");
@@ -11,6 +13,12 @@ const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");
 const modalClose = document.querySelector(".modal-close");
 
+/* FIX: define closeBtn safely (was causing error) */
+const closeBtn = modalClose;
+
+/* =========================
+   IMAGE CLICK → MODAL
+========================= */
 document.querySelectorAll(".img-card img").forEach(img => {
   img.addEventListener("click", () => {
     modal.classList.add("active");
@@ -31,7 +39,6 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
-
 let activeKey = "all";
 
 /* =========================
@@ -39,6 +46,8 @@ let activeKey = "all";
 ========================= */
 buttons.forEach(btn => {
   btn.addEventListener("click", () => {
+    userHasInteracted = true;
+
     buttons.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
 
@@ -54,6 +63,7 @@ buttons.forEach(btn => {
    SEARCH FILTER
 ========================= */
 searchInput.addEventListener("input", () => {
+  userHasInteracted = true;
   applyFilters();
   showSuggestions();
 });
@@ -82,7 +92,12 @@ function applyFilters() {
     }
   });
 
-  emptyState.style.display = visibleCount === 0 ? "block" : "none";
+  /* FIX: show empty message ONLY after user interaction */
+  if (userHasInteracted && visibleCount === 0) {
+    emptyState.style.display = "block";
+  } else {
+    emptyState.style.display = "none";
+  }
 }
 
 /* =========================
@@ -91,7 +106,6 @@ function applyFilters() {
 /* =========================
    FETCH ALL CHARACTER NAMES (AUTO)
 ========================= */
-
 async function fetchCategoryMembers(categoryTitle, max = 5000) {
   const endpoint = "https://genshin-impact.fandom.com/api.php";
   let cmcontinue = null;
@@ -167,8 +181,6 @@ let characters = [];
   }
 })();
 
-
-
 /* =========================
    AUTOCOMPLETE LOGIC
 ========================= */
@@ -189,6 +201,7 @@ function showSuggestions() {
     const li = document.createElement("li");
     li.textContent = name;
     li.addEventListener("click", () => {
+      userHasInteracted = true;
       searchInput.value = name;
       suggestionBox.style.display = "none";
       applyFilters();
@@ -216,13 +229,6 @@ modal.addEventListener("click", e => {
   if (e.target === modal) closeModal();
 });
 
-function closeModal() {
-  modal.classList.remove("active");
-  modalImg.src = "";
-  document.body.style.overflow = "";
-}
-
-
 /* =========================
    FOX VIDEO INTERACTION
 ========================= */
@@ -240,4 +246,3 @@ window.addEventListener("load", () => {
     });
   }
 });
-
