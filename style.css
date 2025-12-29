@@ -533,11 +533,23 @@ a:active {
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
-  .fox-card {
-    width: 140px;
-    bottom: 14px;
-    right: 14px;
-  }
+/* =========================
+   FORCE DESKTOP VIEW ON MOBILE
+========================= */
+
+/* Gallery always desktop */
+.gallery {
+  grid-template-columns: repeat(3, 1fr) !important;
 }
 
+/* Image card size same */
+.img-card {
+  height: 260px;
+}
+
+/* Fox card same as desktop */
+.fox-card {
+  width: 180px !important;
+  bottom: 20px !important;
+  right: 20px !important;
+}
