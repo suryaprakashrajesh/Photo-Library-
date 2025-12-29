@@ -60,6 +60,7 @@ body {
   background: #ffc0cb;
   color: #ffffff;
   transform: translateY(-2px);
+  border: 1px solid #ffffff;
 }
 
 .logo:hover {
@@ -258,6 +259,8 @@ body {
 .social-links a:hover {
   background: #ffc0cb;
   color: #ffffff;
+  transform: translateY(-2px);
+  border: 1px solid #ffffff;
 }
 
 /* =========================
@@ -336,6 +339,12 @@ body {
   border-radius: 22px;
   font-size: 0.9rem;
   text-decoration: none;
+}
+.fox-subscribe:hover {
+  background: #ffffff;
+  color: #ffc0cb;
+  transform: translateY(-2px);
+  border: 1px solid #ffc0cb;
 }
 
 /* =========================
